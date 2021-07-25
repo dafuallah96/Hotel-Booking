@@ -28,6 +28,9 @@ export default class TransactionList extends Component {
           <Left class="row-span-3">
               <Text>{data.email}</Text>
           </Left>
+          <Left class="row-span-3">
+              <Text>{data.time}</Text>
+          </Left>
           <Right>
           <Icon name="arrow-forward" />
           </Right>
