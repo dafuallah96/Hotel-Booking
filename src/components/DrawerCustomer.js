@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     },
     viewProfileData: {
         position: 'absolute',
-        top: 20,
+        top: 90,
         alignSelf: 'center'
     },
     avatar: {
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     },
     imgBackground: {
         width: '100%',
-        height: 100,
+        height: 150,
         opacity: 0.6,
     },
     container: {
