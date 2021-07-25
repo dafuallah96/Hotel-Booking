@@ -109,7 +109,8 @@ export default class NewScreen extends Component {
             
           {this.state.type0 === "1" ?
           <Item fixedLabel last>
-              <Textarea onChangeText={this.setItem} row={5} placeholder="Item1" />
+              <Textarea onChangeText={this.setItem} row={5} placeholder="Item 1" />
+              <Textarea onChangeText={this.setItem2} row={5} placeholder="Price (RM)" />
               </Item>
                    : null}
           <Text></Text>

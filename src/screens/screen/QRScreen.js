@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 // import QRCode from 'react-qr-code';
 import QRCode from 'react-native-qrcode-svg';
 import RNFS from "react-native-fs";
+import CameraRoll from "@react-native-community/cameraroll";
 import { removeStudent } from '../../publics/services/DataService';
 import { Text, View, StyleSheet, Image, AsyncStorage, Link } from 'react-native';
-import { StatusBar, CameraRoll, ToastAndroid } from 'react-native'
+import { StatusBar, ToastAndroid } from 'react-native';
 import { Container, Header, Left, Body, Title, Subtitle, Content, Footer, FooterTab, Button, Icon, List } from 'native-base';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -45,7 +46,17 @@ export default class QrScreen extends Component {
                 />
                 {/* </TouchableOpacity> */}
                 </View>
-                <TouchableOpacity>
+                <TouchableOpacity vertical onPress={() => 
+                   	this.svg.toDataURL((data) => {
+                      RNFS.writeFile(RNFS.CachesDirectoryPath+"/some-name.png", data, 'base64')
+                        .then((success) => {
+                          return CameraRoll.saveToCameraRoll(RNFS.CachesDirectoryPath+"/some-name.png", 'photo')
+                        })
+                        .then(() => {
+                          this.setState({ busy: false, imageSaved: true  })
+                          ToastAndroid.show('Saved to gallery !!', ToastAndroid.SHORT)
+                        })
+                    })}>
                   <View style={styles.instructions}>
                     <Text>Share QR code</Text>
                   </View>
