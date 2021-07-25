@@ -69,7 +69,6 @@ export class DrawerCustomer extends Component {
                     <Image source={{ uri: avatar }} style={styles.avatar} />
                 </View>
                 <View style={styles.viewProfileData}>
-                    
                     <Text style={styles.txtFullname}>{fullname}</Text>
                     <Text style={styles.txtEmail}>{email}</Text>
                 </View>

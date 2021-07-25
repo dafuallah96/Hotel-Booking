@@ -166,7 +166,7 @@ export class EditProfile extends Component {
                     <Item style={styles.formInput} floatingLabel>
                         <Icon name="user" type="FontAwesome" style={styles.icon} />
                         <Label style={styles.icon}>Avatar URL</Label>
-                        <Input onChangeText={avatar => this.setState({avatar})} style={styles.textInput} value={avatar} />
+                        <Input onChangeText={avatar => this.setState( {avatar })} style={styles.textInput} value={avatar} />
                     </Item>
                     <Button primary rounded style={{ width: 300 }} onPress={() => this.luploadImage()}>
                         <Text style={{ textAlign: 'center', width: '100%' }}>Update</Text>

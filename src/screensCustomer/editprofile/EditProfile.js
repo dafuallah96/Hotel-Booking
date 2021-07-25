@@ -17,7 +17,8 @@ export class EditProfileCustomer extends Component {
         super(props)
 
         this.state = {
-            id: this.props.navigation.getParam('id'),            avatar: null,
+            id: this.props.navigation.getParam('id'),            
+            avatar: this.props.navigation.getParam('avatar'),
             fullname: this.props.navigation.getParam('fullname'),
             contact: this.props.navigation.getParam('contact')
         }
@@ -33,7 +34,7 @@ export class EditProfileCustomer extends Component {
         }
 
     render() {
-        const {fullname, currentAvatar, location, interest, aboutme, contact } = this.state
+        const {fullname, currentAvatar, location, interest, aboutme, contact, avatar } = this.state
         console.warn('fullname: ', fullname)
         console.warn('current avatar: ', currentAvatar)
         return (
@@ -60,6 +61,11 @@ export class EditProfileCustomer extends Component {
                         <Icon name="user" type="FontAwesome" style={styles.icon} />
                         <Label style={styles.icon}>Contact Info</Label>
                         <Input onChangeText={contact => this.setState({ contact })} style={styles.textInput} value={contact} />
+                    </Item>
+                    <Item style={styles.formInput} floatingLabel>
+                        <Icon name="user" type="FontAwesome" style={styles.icon} />
+                        <Label style={styles.icon}>Avatar URL</Label>
+                        <Input onChangeText={avatar => this.setState({ avatar })} style={styles.textInput} value={avatar} />
                     </Item>
                     <Button primary rounded style={{ width: 300 }} onPress={() => this.uploadImage()}>
                         <Text style={{ textAlign: 'center', width: '100%' }}>Update</Text>
