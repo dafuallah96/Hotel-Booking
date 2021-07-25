@@ -27,6 +27,7 @@ export default class ViewScreen extends Component {
      user: null,
      checkedItem1: Boolean,
      item1: null,
+     item2: null,
      item_checked1: null,
      remarks: null,
      phoneNumber: null
@@ -54,7 +55,8 @@ export default class ViewScreen extends Component {
                   service_name: element.service_name,
                   service_price: element.service_price,
                   service_type: element.service_type,
-                  item1: element.item1,      
+                  item1: element.item1,   
+                  item2: element.item2,   
                   id: element._id
                 });
               });
@@ -80,6 +82,11 @@ export default class ViewScreen extends Component {
   setDescription = (value) => {
     this.setState({ service_description: value });
   }
+
+  setAddOn = (value) => {
+    this.setState({ item1: value });
+  }
+
 
   setUserNumber = (value) => {
     this.setState({ phoneNumber: value });
@@ -112,7 +119,9 @@ export default class ViewScreen extends Component {
     if (this.state.phoneNumber === null || !re.test(this.state.phoneNumber)) {
       alert('Kindly add user phone number')
   } else {
-    addTransaction(this.state.email, this.state.success, this.state.service_price, this.state.service_name, this.state.service_type, this.state.token, this.state.phoneNumber + this.state.service_name, this.state.remarks);
+    var ttprice = Number(this.state.item2) + Number(this.state.service_price);
+    var totprice = '' + ttprice;
+    addTransaction(this.state.email, this.state.success, totprice, this.state.service_name, this.state.service_type, this.state.token, this.state.phoneNumber + this.state.service_name, this.state.remarks);
     Alert.alert('Status','Transaction is succesful');
     this.props.navigation.navigate('TransactionListScreen')
   }
@@ -121,6 +130,9 @@ export default class ViewScreen extends Component {
   render() {
     const {user} = this.state
     const {stripe} = this.props;
+
+    var ttprice = Number(this.state.item2) + Number(this.state.service_price);
+    var totprice = '' + ttprice;
     return (
       <Container>
         <Content padder>
@@ -168,6 +180,22 @@ export default class ViewScreen extends Component {
               keyboardType="numeric"  onChangeText={this.setUserNumber} />
               
         </Item>
+        
+        <Item fixedLabel last>
+              <Label>Add-On</Label>
+              <Input  onChangeText={this.item1} value={this.state.item1} />
+        </Item>
+
+        <Item fixedLabel last>
+          <Label>Add-On Price</Label>
+          <Input onChangeText={this.item2} value={this.state.item2} />
+        </Item>
+
+        <Item fixedLabel last>
+          <Label>Total Price</Label>
+          <Input onChangeText={this.item3} value={totprice} />
+        </Item>
+
         </Form>
 
 

@@ -55,7 +55,7 @@ export default class NewScreen extends Component {
   }
 
   setItem1 = (value) => {
-    this.setState({ item1: "2" });
+    this.setState({ item1: value });
   }
   setItem2 = (value) => {
     this.setState({ item2: "3" });
@@ -88,6 +88,7 @@ export default class NewScreen extends Component {
   render() {
     const { fullname, avatar } = this.state
     console.warn('fullname: ', fullname)
+
     return (
       <Container>
         <Content padder>
@@ -110,31 +111,35 @@ export default class NewScreen extends Component {
           {this.state.type0 === "1" ?
           <Item fixedLabel last>
               <Textarea onChangeText={this.setItem} row={5} placeholder="Item 1" />
-              <Textarea onChangeText={this.setItem2} row={5} placeholder="Price (RM)" />
+              <Textarea onChangeText={this.setItem1} row={5} placeholder="Price (MYR)" />
               </Item>
                    : null}
           <Text></Text>
             {(this.state.type1 === "2")  ?
               <Item fixedLabel last>
-                <Textarea onChangeText={this.setItem1} row={5} placeholder="Item2" />
+                <Textarea onChangeText={this.setItem3} row={5} placeholder="Item2" />
+                <Textarea onChangeText={this.setItem4} row={5} placeholder="Price (RM)" />
               </Item>
               : null}
             
            {this.state.type2 === "3"  ?
               <Item fixedLabel last>
               <Textarea onChangeText={this.setItem2} row={5} placeholder="Item3" />
+              <Textarea onChangeText={this.setItem2} row={5} placeholder="Price (RM)" />
             </Item>
               : null}
             
                        {this.state.type3 === "4"  ?
             <Item fixedLabel last hidden>
               <Textarea onChangeText={this.setItem3} row={5} placeholder="Item4" />
+              <Textarea onChangeText={this.setItem2} row={5} placeholder="Price (RM)" />
             </Item>
               : null}
             
                          {this.state.type4 === "5"  ?
                       <Item fixedLabel last>
               <Textarea onChangeText={this.setItem4} row={5} placeholder="Item5" />
+              <Textarea onChangeText={this.setItem2} row={5} placeholder="Price (RM)" />
               </Item>
                    : null}
           </Form>
