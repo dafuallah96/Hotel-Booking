@@ -12,7 +12,7 @@ export const addService = (service_type, service_name, service_price, service_de
     })
 }
 
-export const addTransaction = (email, success, price, service_name, service_type, id, token, remarks) => {
+export const addTransaction = (email, success, price, service_name, service_type, id, token, remarks, time) => {
     Database.ref('/transactions').child(id).child(token).set({
         email: email,
         success: success,
@@ -21,6 +21,7 @@ export const addTransaction = (email, success, price, service_name, service_type
         service_type: service_type,
         token: token,
         remarks: remarks,
+        time: time,
         _id: id
     })
 }

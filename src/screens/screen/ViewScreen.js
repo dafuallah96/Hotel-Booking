@@ -121,7 +121,9 @@ export default class ViewScreen extends Component {
   } else {
     var ttprice = Number(this.state.item2) + Number(this.state.service_price);
     var totprice = '' + ttprice;
-    addTransaction(this.state.email, this.state.success, totprice, this.state.service_name, this.state.service_type, this.state.token, this.state.phoneNumber + this.state.service_name, this.state.remarks);
+    var date = new Date().toLocaleString();
+
+    addTransaction(this.state.email, this.state.success, totprice, this.state.service_name, this.state.service_type, this.state.token, this.state.phoneNumber + this.state.service_name, this.state.remarks, date);
     Alert.alert('Status','Transaction is succesful');
     this.props.navigation.navigate('TransactionListScreen')
   }

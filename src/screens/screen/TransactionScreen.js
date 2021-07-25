@@ -18,6 +18,7 @@ export default class TransactionScreen extends Component {
      remarks: null,
      service_name: null,
      price: null,
+     time: null,
      service_name: null,
      service_type: null,
      email: null,
@@ -44,6 +45,7 @@ export default class TransactionScreen extends Component {
                 this.setState({
                   email: element.email,
                   price: element.price,
+                  time: element.time,
                   service_name: element.service_name,
                   service_type: element.service_type,
                   token: element.token,
@@ -94,6 +96,10 @@ export default class TransactionScreen extends Component {
           <Item fixedLabel last>
               <Label>Remarks</Label>
               <Input value={this.state.remarks} />
+        </Item>
+        <Item fixedLabel last>
+              <Label>Time Stamp</Label>
+              <Input value={this.state.time} />
         </Item>
         </Form>
 
