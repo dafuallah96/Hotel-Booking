@@ -54,7 +54,8 @@ export default class ViewScreenCustomer extends Component {
                   service_price: element.service_price,
                   service_type: element.service_type,
                   item1: element.item1,
-                  id: element._id
+                  id: element._id,
+                  totprice: element.totprice,
                 });
               });
             });
@@ -75,6 +76,10 @@ export default class ViewScreenCustomer extends Component {
     this.setState({ service_price: value });
   }
 
+  setTotprice = (value) => {
+    this.setState({totprice: totprice});
+  }
+ 
   setRemarks = (value) => {
     this.setState({ remarks: value });
   }
@@ -104,22 +109,11 @@ export default class ViewScreenCustomer extends Component {
               <Label>Service Description</Label>
               <Input value={this.state.service_description} />
         </Item>
-        <ListItem fixedLabel last>
-                      <CheckBox
-                        style={{ borderColor: 'blue' }}
-                        checked={true}
-                        color={'blue'}
-                        onPress={() => true}
-              />
-              
-                      <Body>
-                      <Text>{this.state.item1} </Text>
-                    </Body>
-                </ListItem>
         </Form>
 
             <Button block onPress={() => this.props.navigation.navigate('CardFormScreenCustomer', {
             price: this.state.service_price + this.state.zero,
+            totprice: this.state.totprice,
             userid: this.state.token,
             searchID: this.state.searchID,
             email: this.state.email,

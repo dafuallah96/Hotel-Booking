@@ -43,6 +43,7 @@ export default class TransactionScreen extends Component {
             this.setState({clients: firebaseData},()=>{
               this.state.clients.map((element) => {
                 this.setState({
+                  
                   email: element.email,
                   price: element.price,
                   time: element.time,

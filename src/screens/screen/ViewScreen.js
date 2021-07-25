@@ -87,7 +87,6 @@ export default class ViewScreen extends Component {
     this.setState({ item1: value });
   }
 
-
   setUserNumber = (value) => {
     this.setState({ phoneNumber: value });
   }
@@ -99,7 +98,7 @@ export default class ViewScreen extends Component {
         Alert.alert('Status','Invalid Service Type or Price!');
       }
        else{
-        addService(this.state.service_type, this.state.service_name, this.state.service_price, this.state.service_description, this.state.token, this.state.fullname);
+        addService(this.state.totprice, this.state.item2, this.state.service_type, this.state.service_name, this.state.service_price, this.state.service_description, this.state.token, this.state.fullname);
         Alert.alert('Status','Updated');
         this.props.navigation.navigate('ListScreen');
        }
@@ -132,7 +131,6 @@ export default class ViewScreen extends Component {
   render() {
     const {user} = this.state
     const {stripe} = this.props;
-
     var ttprice = Number(this.state.item2) + Number(this.state.service_price);
     var totprice = '' + ttprice;
     return (

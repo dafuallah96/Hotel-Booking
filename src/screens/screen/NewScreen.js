@@ -12,6 +12,7 @@ export default class NewScreen extends Component {
     service_name: null,
     service_type: null,
     service_price: null,
+    totprice: null,
     type0: null,
     type1: null,
     type2: null,
@@ -75,7 +76,9 @@ export default class NewScreen extends Component {
         Alert.alert('Status','Invalid Service Type or Price!');
       }
       else{
-        addService(this.state.service_type, this.state.service_name, this.state.service_price, this.state.service_description, this.state._id, this.state.fullname, this.state.item);
+        var ttprice = Number(this.state.item) + Number(this.state.item1);
+        var totprice = '' + ttprice;
+        addService(this.state.service_type, this.state.service_name, this.state.service_price, this.state.service_description, this.state._id, this.state.fullname, this.state.item, this.state.item1, this.state.totprice);
         Alert.alert('Status','Record added');
         this.props.navigation.navigate('ListScreen');
       }
