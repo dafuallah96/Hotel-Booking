@@ -97,7 +97,15 @@ export class DrawerCustomer extends Component {
                             </Left>
                         </ListItem>
                     </TouchableOpacity>
-                
+                    <TouchableOpacity
+                        onPress={() => this._handleLogout()}
+                    >
+                        <ListItem>
+                            <Left>
+                                <Text style={styles.txtMenu}><Icon name="logo-usd" type="Ionicons" style={[styles.iconStyle, { color: 'green' }]} /> Payment Method</Text>
+                            </Left>
+                        </ListItem>
+                    </TouchableOpacity>
                     <TouchableOpacity
                         onPress={() => this._handleLogout()}
                     >

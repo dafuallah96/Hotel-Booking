@@ -34,7 +34,12 @@ export default class CardFormScreenCustomer extends PureComponent {
 }
 
   doPayment = async () => {
-
+    var date = new Date().toLocaleString();
+    addTransaction(this.state.email, this.state.success, this.state.price, this.state.service_name, this.state.service_type, this.state.id, this.state.token, this.state.remarks, date);
+    addTransaction(this.state.email, this.state.success, this.state.price, this.state.service_name, this.state.service_type, this.state.searchID, this.state.token, this.state.remarks, date);
+    Alert.alert('Status','Payment Succesful');
+    this.props.navigation.navigate('TransactionListScreenCustomer');
+/*
     // Use firebase serve for local testing if you don't have a paid firebase account
     fetch('https://us-central1-hotelbooking-e4531.cloudfunctions.net/payWithStripe', {
       method: 'POST',
@@ -65,6 +70,7 @@ export default class CardFormScreenCustomer extends PureComponent {
       .catch((error) => {
         console.error(error);
       });;
+      */
   }
 
   handleCardPayPress = async () => {
@@ -80,6 +86,21 @@ export default class CardFormScreenCustomer extends PureComponent {
       console.log('handleCardPayPress Error ', error)
     }
   }
+
+  handleCash = () => {
+    const re = /^[0-9\b]+$/; //rules
+    if (this.state.phoneNumber === null || !re.test(this.state.phoneNumber)) {
+      alert('Kindly add user phone number')
+  } else {
+    var ttprice = Number(this.state.item2) + Number(this.state.service_price);
+    var totprice = '' + ttprice;
+    var date = new Date().toLocaleString();
+
+    addTransaction(this.state.email, this.state.success, totprice, this.state.service_name, this.state.service_type, this.state.token, this.state.phoneNumber + this.state.service_name, this.state.remarks, date);
+    Alert.alert('Status','Transaction is succesful');
+    this.props.navigation.navigate('TransactionListScreen')
+  }
+}
 
   render() {
     const { loading, token, success, response } = this.state
@@ -98,9 +119,12 @@ export default class CardFormScreenCustomer extends PureComponent {
           Enter card info then make payment
         </Text>
         <Button
-          text="Enter you card and pay"
+          text="Enter your card and pay"
           onPress={this.handleCardPayPress}
         />
+        <Button
+          text="Pay by Cash"
+          onPress={() => this.handleCash()}></Button>
         <View
           style={styles.token}>
           {token &&

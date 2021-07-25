@@ -15,7 +15,7 @@ exports.payWithStripe = functions.https.onRequest((request, response) => {
   stripe.charges.create({
     amount: request.body.amount,
     currency: request.body.currency,
-    source: "tok_mastercard",
+    source: request.body.token,
     metadata: {"token": request.body.token},
   }).then((charge) => {
     // asynchronously called

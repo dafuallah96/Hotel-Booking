@@ -84,6 +84,20 @@ export default class ViewScreenCustomer extends Component {
     this.setState({ remarks: value });
   }
 
+  handleCash = () => {
+    const re = /^[0-9\b]+$/; //rules
+    if (this.state.phoneNumber === null || !re.test(this.state.phoneNumber)) {
+      alert('Kindly add user phone number')
+  } else {
+    var ttprice = Number(this.state.item2) + Number(this.state.service_price);
+    var totprice = '' + ttprice;
+    var date = new Date().toLocaleString();
+
+    addTransaction(this.state.email, this.state.success, totprice, this.state.service_name, this.state.service_type, this.state.token, this.state.phoneNumber + this.state.service_name, this.state.remarks, date);
+    Alert.alert('Status','Transaction is succesful');
+    this.props.navigation.navigate('TransactionListScreen')
+  }
+}
 
   render() {
     const {user} = this.state
