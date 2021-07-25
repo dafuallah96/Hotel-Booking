@@ -23,7 +23,7 @@ export class EditProfile extends Component {
             address: props.navigation.state.params.address,
             bank_account: props.navigation.state.params.bank_account,
             fullname: props.navigation.state.params.fullname,
-            contact: props.navigation.state.params.contact
+            contact: props.navigation.state.params.contact,
         }
     }
 
@@ -99,7 +99,7 @@ export class EditProfile extends Component {
                 })
                 .then((url) => {
                     resolve(url)
-                    Database.ref('user/' + this.state.id).update({ fullname: this.state.fullname, contact: this.state.contact, bank_account: this.state.bank_account, ic: this.state.ic, address: this.state.address})
+                    Database.ref('user/' + this.state.id).update({ bisName: this.state.fullname, fullname: this.state.fullname, contact: this.state.contact, bank_account: this.state.bank_account, ic: this.state.ic, address: this.state.address, avatar: this.state.avatar})
                     alert('Updated profile. Data will be shown in the next logged in session')
                     this.props.navigation.navigate('TransactionListScreen')
                 })
@@ -109,8 +109,14 @@ export class EditProfile extends Component {
             `   `})
             }
 
+    luploadImage = () => {
+        Database.ref('user/' + this.state.id).update({ fullname: this.state.fullname, contact: this.state.contact, bank_account: this.state.bank_account, ic: this.state.ic, address: this.state.address})
+        alert('Updated profile. Data will be shown in the next logged in session')
+        this.props.navigation.navigate('TransactionListScreen')
+    }
+
     render() {
-        const {avatar, fullname, currentAvatar, location, bank_account, ic, address, contact } = this.state
+        const {avatar, fullname, currentAvatar, location, bank_account, ic, address, contact, imgURL } = this.state
         console.warn('fullname: ', fullname)
         console.warn('current avatar: ', currentAvatar)
         return (
@@ -157,7 +163,7 @@ export class EditProfile extends Component {
                         <Label style={styles.icon}>Bank Account</Label>
                         <Input onChangeText={bank_account => this.setState({ bank_account })} style={styles.textInput} value={bank_account} />
                     </Item>
-                    <Button primary rounded style={{ width: 300 }} onPress={() => this.uploadImage(avatar.fileName)}>
+                    <Button primary rounded style={{ width: 300 }} onPress={() => this.luploadImage()}>
                         <Text style={{ textAlign: 'center', width: '100%' }}>Update</Text>
                     </Button>
                 </View>

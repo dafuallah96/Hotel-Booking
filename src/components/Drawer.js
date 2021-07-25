@@ -124,7 +124,8 @@ export class Drawer extends Component {
                             address: address,
                             contact: contact,
                             ic: ic,
-                            bank_account: bank_account
+                            bank_account: bank_account,
+                            avatar: avatar
 
                         })}
                     >
