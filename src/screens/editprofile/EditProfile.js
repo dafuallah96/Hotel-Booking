@@ -110,7 +110,7 @@ export class EditProfile extends Component {
             }
 
     luploadImage = () => {
-        Database.ref('user/' + this.state.id).update({ fullname: this.state.fullname, contact: this.state.contact, bank_account: this.state.bank_account, ic: this.state.ic, address: this.state.address})
+        Database.ref('user/' + this.state.id).update({ avatar: avatar, fullname: this.state.fullname, contact: this.state.contact, bank_account: this.state.bank_account, ic: this.state.ic, address: this.state.address})
         alert('Updated profile. Data will be shown in the next logged in session')
         this.props.navigation.navigate('TransactionListScreen')
     }
@@ -162,6 +162,11 @@ export class EditProfile extends Component {
                         <Icon name="user" type="FontAwesome" style={styles.icon} />
                         <Label style={styles.icon}>Bank Account</Label>
                         <Input onChangeText={bank_account => this.setState({ bank_account })} style={styles.textInput} value={bank_account} />
+                    </Item>
+                    <Item style={styles.formInput} floatingLabel>
+                        <Icon name="user" type="FontAwesome" style={styles.icon} />
+                        <Label style={styles.icon}>Avatar URL</Label>
+                        <Input onChangeText={avatar => this.setState({avatar})} style={styles.textInput} value={avatar} />
                     </Item>
                     <Button primary rounded style={{ width: 300 }} onPress={() => this.luploadImage()}>
                         <Text style={{ textAlign: 'center', width: '100%' }}>Update</Text>
